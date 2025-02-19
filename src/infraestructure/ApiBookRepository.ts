@@ -5,7 +5,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { ZodType } from "zod";
 
 export class ApiBookRepository implements BookRepositoryInterface {
-  private apiUrl: string = "https://fakerapi.it/api/v1/books";
+  private readonly apiUrl: string = "https://fakerapi.it/api/v1/books";
 
   private async handleError(error: AxiosError, customMessage: string = "") {
     console.error("API Error:", error.response || error.message);

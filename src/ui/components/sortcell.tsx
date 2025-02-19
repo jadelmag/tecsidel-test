@@ -22,7 +22,7 @@ const SortCell: React.FC<SortCellProps> = ({ field, value, order, onSort }) => {
       onClick={() => onSort("author")}
     >
       {value}
-      <>{icon}</>
+      {icon}
     </th>
   );
 };
