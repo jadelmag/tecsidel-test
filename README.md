@@ -23,3 +23,12 @@ Develop a small React application using Typescript, leveraging any necessary too
 - React application created with vite and Typescript. Implemented hexagonal architecture with SOLID principles.
 
 - Added Unit Tests.
+
+## Deploy
+
+[Project Netlify](https://jolly-dodol-c213ee.netlify.app/)
+
+## Google Lighthouse
+
+![Mi Imagen](lighthouse/desktop.png)
+![Mi Imagen](lighthouse/mobile.png)
