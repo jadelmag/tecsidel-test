@@ -44,7 +44,42 @@ export default defineConfig(() => {
           "**/vite-env.d.ts",
           "**/constants/**",
           "**/ports/**",
+          "**/interfaces/sortfield.ts",
         ],
+      },
+    },
+    build: {
+      outDir: "dist",
+      emptyOutDir: true,
+      minify: true,
+      assetsDir: "assets",
+      cssCodeSplit: true,
+      sourcemap: false,
+      rollupOptions: {
+        treeshake: true,
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              return id
+                .toString()
+                .split("node_modules/")[1]
+                .split("/")[0]
+                .toString();
+            }
+          },
+        },
+      },
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        minify: false,
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+        },
       },
     },
   };

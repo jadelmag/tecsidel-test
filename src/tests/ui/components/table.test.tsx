@@ -44,8 +44,18 @@ describe("CustomTable Component", () => {
     vi.restoreAllMocks();
   });
 
+  const mockOnDeleteRow = vi.fn();
+  const mockOnSortBooks = vi.fn();
+
   it("renders the table with initial books", () => {
-    render(<CustomTable />);
+    render(
+      <CustomTable
+        books={mockBooks}
+        showColor={false}
+        onDeleteRow={mockOnDeleteRow}
+        onSortBooks={mockOnSortBooks}
+      />
+    );
 
     const authorA = screen.getByText(/Gerard Bonilla/i);
     const authorB = screen.getByText(/Beatriz Suarez/i);
@@ -54,20 +64,15 @@ describe("CustomTable Component", () => {
     expect(authorB).toBeInTheDocument();
   });
 
-  it("filters books based on search input", async () => {
-    render(<CustomTable />);
-
-    const searchInput = screen.getByPlaceholderText("Search by author");
-    fireEvent.change(searchInput, { target: { value: "Beatriz" } });
-
-    await waitFor(() => {
-      const author = screen.getByText(/Beatriz Suarez/i);
-      expect(author).toBeInTheDocument();
-    });
-  });
-
   it("sorts books by author", async () => {
-    render(<CustomTable />);
+    render(
+      <CustomTable
+        books={mockBooks}
+        showColor={false}
+        onDeleteRow={mockOnDeleteRow}
+        onSortBooks={mockOnSortBooks}
+      />
+    );
 
     const authorHeader = screen.getByText(/Author/i);
     fireEvent.click(authorHeader);
@@ -78,35 +83,6 @@ describe("CustomTable Component", () => {
 
       expect(firstAuthor).toBeInTheDocument();
       expect(secondAuthor).toBeInTheDocument();
-    });
-  });
-
-  it("deletes a book and restores the list", async () => {
-    render(<CustomTable />);
-
-    const deleteButton = screen.getAllByText("Delete")[0];
-    fireEvent.click(deleteButton);
-
-    await waitFor(() => {
-      expect(screen.queryByText(/Gerard Bonilla/i)).not.toBeInTheDocument();
-    });
-
-    fireEvent.click(screen.getByText("Restore All"));
-
-    await waitFor(() => {
-      expect(screen.getByText(/Gerard Bonilla/i)).toBeInTheDocument();
-    });
-  });
-
-  it("toggles table row colors", async () => {
-    render(<CustomTable />);
-
-    const colorButton = screen.getByText("Add Color on Table");
-    fireEvent.click(colorButton);
-
-    await waitFor(() => {
-      const rows = screen.getAllByRole("row");
-      expect(rows[1]).toHaveClass("bg-gray-400");
     });
   });
 });

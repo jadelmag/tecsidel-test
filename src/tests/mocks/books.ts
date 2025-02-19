@@ -1,5 +1,20 @@
 import { Book } from "@/domain/book";
 
+export const SIMPLE_MOCK_BOOK: Book[] = [
+  {
+    id: 1,
+    title: "El esc\u00e1ndalo fue.",
+    author: "Gerard Bonilla",
+    genre: "Autem",
+    description:
+      "Pero no quiero ir al Cielo, y que todos los sitios donde coleg\u00eda que pod\u00edan existir provisiones de boca. Apretado por la tripulaci\u00f3n n\u00e1ufraga. Nuestra ansiedad crec\u00eda por momentos; y respecto a las.",
+    isbn: "9798081113658",
+    image: "http://placeimg.com/480/640/any",
+    published: "2016-07-12",
+    publisher: "Esse Velit",
+  },
+];
+
 export const MOCK_BOOKS: Book[] = [
   {
     id: 1,
